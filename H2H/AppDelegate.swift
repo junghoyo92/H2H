@@ -7,16 +7,100 @@
 //
 
 import UIKit
+import Parse
+import Firebase
+import Batch
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        // Enable storing and querying data from Local Datastore.
+        // Remove this line if you don't want to use Local Datastore features or want to use cachePolicy.
+        FIRApp.configure()
+        Batch.startWithAPIKey("574E0B8F190F74162A5911529CBCF4") // Dev
+        // Batch.startWithAPIKey("574E0B8F190F74162A5911529CBCF4") // live
+        BatchPush.registerForRemoteNotifications()
+        Parse.enableLocalDatastore()
+        
+        let parseConfiguration = ParseClientConfiguration(block: { (ParseMutableClientConfiguration) -> Void in
+            ParseMutableClientConfiguration.applicationId = "h2hAppID$sH3k2F1@na*TL"
+            ParseMutableClientConfiguration.clientKey = "h2hMasterKeyX^nsO&13FsI2#sdNBa"
+            ParseMutableClientConfiguration.server = "https://hairway2heaven.herokuapp.com/parse"
+        })
+        
+        Parse.initializeWithConfiguration(parseConfiguration)
+        
+        
+        // ****************************************************************************
+        // Uncomment and fill in with your Parse credentials:
+        // Parse.setApplicationId("your_application_id", clientKey: "your_client_key")
+        //
+        // If you are using Facebook, uncomment and add your FacebookAppID to your bundle's plist as
+        // described here: https://developers.facebook.com/docs/getting-started/facebook-sdk-for-ios/
+        // Uncomment the line inside ParseStartProject-Bridging-Header and the following line here:
+        // PFFacebookUtils.initializeFacebook()
+        // ****************************************************************************
+        
+        PFUser.enableAutomaticUser()
+        
+        let defaultACL = PFACL();
+        
+        // If you would like all objects to be private by default, remove this line.
+        defaultACL.publicReadAccess = true
+        
+        PFACL.setDefaultACL(defaultACL, withAccessForCurrentUser: true)
+        
+        // APN Services - Push Notification Standard Bit of Code, REQUIRES prerequisite certificates and provisioning profiles.
+        let notificationTypes: UIUserNotificationType = [UIUserNotificationType.Alert, UIUserNotificationType.Badge, UIUserNotificationType.Sound]
+        let pushNotificationSettings = UIUserNotificationSettings(forTypes: notificationTypes, categories: nil)
+        
+        application.registerUserNotificationSettings(pushNotificationSettings)
+        application.registerForRemoteNotifications()
+
+        
         return true
+    }
+    
+    //--------------------------------------
+    // MARK: Push Notifications
+    //--------------------------------------
+    
+    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+        let installation = PFInstallation.currentInstallation()
+        installation.setDeviceTokenFromData(deviceToken)
+        installation.saveInBackground()
+        
+        // print("DEVICE TOKEN = \(deviceToken)")
+    }
+    
+    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
+        if error.code == 3010 {
+            print("Push notifications are not supported in the iOS Simulator.\n")
+        } else {
+            print("application:didFailToRegisterForRemoteNotificationsWithError: %@\n", error)
+        }
+    }
+    
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject], fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
+        PFPush.handlePush(userInfo)
+        if application.applicationState == UIApplicationState.Inactive {
+            PFAnalytics.trackAppOpenedWithRemoteNotificationPayload(userInfo)
+        }
+        
+        BatchPush.dismissNotifications()
+    }
+    
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+        PFPush.handlePush(userInfo)
+        if application.applicationState == UIApplicationState.Inactive {
+            PFAnalytics.trackAppOpenedWithRemoteNotificationPayload(userInfo)
+        }
+        
+        BatchPush.dismissNotifications()
     }
 
     func applicationWillResignActive(application: UIApplication) {

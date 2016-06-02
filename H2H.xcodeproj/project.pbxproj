@@ -7,21 +7,79 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		73DE42BF1C3793DA00658C31 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73DE42BE1C3793DA00658C31 /* AppDelegate.swift */; };
 		73DE42C11C3793DA00658C31 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73DE42C01C3793DA00658C31 /* ViewController.swift */; };
 		73DE42C41C3793DA00658C31 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73DE42C21C3793DA00658C31 /* Main.storyboard */; };
 		73DE42C61C3793DA00658C31 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73DE42C51C3793DA00658C31 /* Assets.xcassets */; };
 		73DE42C91C3793DA00658C31 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73DE42C71C3793DA00658C31 /* LaunchScreen.storyboard */; };
+		73DE42D11C379FF600658C31 /* H2H.png in Resources */ = {isa = PBXBuildFile; fileRef = 73DE42D01C379FF600658C31 /* H2H.png */; };
+		A08B1E3B60E98D7F37E42D6B /* Pods_H2H.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A16FC588239E5E051E64F97 /* Pods_H2H.framework */; };
+		A62A9EB31CFB91DF00A231D3 /* post.png in Resources */ = {isa = PBXBuildFile; fileRef = A62A9EB11CFB91DF00A231D3 /* post.png */; };
+		A62A9EB81CFB952000A231D3 /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = A62A9EB71CFB952000A231D3 /* settings.png */; };
+		A62A9EBA1CFB979900A231D3 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A62A9EB91CFB979900A231D3 /* ProfileViewController.swift */; };
+		A62A9EBC1CFB9C7400A231D3 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A62A9EBB1CFB9C7400A231D3 /* PostViewController.swift */; };
+		A62A9EBE1CFBA43F00A231D3 /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = A62A9EBD1CFBA43F00A231D3 /* placeholder.png */; };
+		A64422741CF6998400502539 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A64422731CF6998400502539 /* AudioToolbox.framework */; };
+		A644227C1CF699FD00502539 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A64422791CF699FD00502539 /* CFNetwork.framework */; };
+		A64422811CF69A8F00502539 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A644227F1CF69A8F00502539 /* CoreGraphics.framework */; };
+		A64422821CF69A8F00502539 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A64422801CF69A8F00502539 /* CoreLocation.framework */; };
+		A64422841CF69A9900502539 /* libz.1.1.3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A64422831CF69A9900502539 /* libz.1.1.3.tbd */; };
+		A64422861CF69AA400502539 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A64422851CF69AA400502539 /* MobileCoreServices.framework */; };
+		A64422881CF69AAB00502539 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A64422871CF69AAB00502539 /* QuartzCore.framework */; };
+		A644228A1CF69AB400502539 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A64422891CF69AB400502539 /* Security.framework */; };
+		A644228C1CF69AC100502539 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A644228B1CF69AC100502539 /* SystemConfiguration.framework */; };
+		A644228D1CF69B4000502539 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A64422761CF699BB00502539 /* libsqlite3.tbd */; };
+		A64422911CF6A05400502539 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A644228E1CF6A05400502539 /* Parse.framework */; };
+		A64422951CF6A07900502539 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A64422941CF6A07900502539 /* Bolts.framework */; };
+		A64422971CF6A15F00502539 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64422961CF6A15F00502539 /* AppDelegate.swift */; };
+		A64422991CF6AD8200502539 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64422981CF6AD8200502539 /* LoginViewController.swift */; };
+		A64896481CFE250D007660E6 /* BeautySupply.png in Resources */ = {isa = PBXBuildFile; fileRef = A64896471CFE250D007660E6 /* BeautySupply.png */; };
+		A648964A1CFE3069007660E6 /* facebook.png in Resources */ = {isa = PBXBuildFile; fileRef = A64896491CFE3069007660E6 /* facebook.png */; };
+		A648964C1CFE3FE5007660E6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A648964B1CFE3FE5007660E6 /* GoogleService-Info.plist */; };
+		A6784C531CF68ED7001DD981 /* H2HBG.png in Resources */ = {isa = PBXBuildFile; fileRef = A6784C511CF68ED7001DD981 /* H2HBG.png */; };
+		A6784C541CF68ED7001DD981 /* hairway.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = A6784C521CF68ED7001DD981 /* hairway.jpeg */; };
+		A6B680651CFB78F70042CC9D /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B680641CFB78F70042CC9D /* SignUpViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0599177B41D69CAFDA601B43 /* Pods-H2H.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-H2H.debug.xcconfig"; path = "Pods/Target Support Files/Pods-H2H/Pods-H2H.debug.xcconfig"; sourceTree = "<group>"; };
 		73DE42BB1C3793DA00658C31 /* H2H.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = H2H.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		73DE42BE1C3793DA00658C31 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		73DE42C01C3793DA00658C31 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		73DE42C31C3793DA00658C31 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		73DE42C51C3793DA00658C31 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		73DE42C81C3793DA00658C31 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		73DE42CA1C3793DA00658C31 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		73DE42D01C379FF600658C31 /* H2H.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = H2H.png; sourceTree = "<group>"; };
+		9A16FC588239E5E051E64F97 /* Pods_H2H.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_H2H.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A62A9EB11CFB91DF00A231D3 /* post.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = post.png; path = ../post.png; sourceTree = "<group>"; };
+		A62A9EB71CFB952000A231D3 /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
+		A62A9EB91CFB979900A231D3 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		A62A9EBB1CFB9C7400A231D3 /* PostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
+		A62A9EBD1CFBA43F00A231D3 /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholder.png; sourceTree = "<group>"; };
+		A64422731CF6998400502539 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		A64422751CF699BB00502539 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		A64422761CF699BB00502539 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		A64422791CF699FD00502539 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		A644227A1CF699FD00502539 /* libnetwork.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libnetwork.tbd; path = usr/lib/libnetwork.tbd; sourceTree = SDKROOT; };
+		A644227B1CF699FD00502539 /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
+		A644227F1CF69A8F00502539 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		A64422801CF69A8F00502539 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		A64422831CF69A9900502539 /* libz.1.1.3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.1.3.tbd; path = usr/lib/libz.1.1.3.tbd; sourceTree = SDKROOT; };
+		A64422851CF69AA400502539 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		A64422871CF69AAB00502539 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		A64422891CF69AB400502539 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		A644228B1CF69AC100502539 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		A644228E1CF6A05400502539 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		A64422941CF6A07900502539 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		A64422961CF6A15F00502539 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		A64422981CF6AD8200502539 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		A64896471CFE250D007660E6 /* BeautySupply.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BeautySupply.png; sourceTree = "<group>"; };
+		A64896491CFE3069007660E6 /* facebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebook.png; sourceTree = "<group>"; };
+		A648964B1CFE3FE5007660E6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A6784C511CF68ED7001DD981 /* H2HBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = H2HBG.png; sourceTree = "<group>"; };
+		A6784C521CF68ED7001DD981 /* hairway.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = hairway.jpeg; sourceTree = "<group>"; };
+		A6B680641CFB78F70042CC9D /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		A6B680661CFB85530042CC9D /* LiquidFloatingActionButton.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LiquidFloatingActionButton.framework; path = "Pods/../build/Debug-iphoneos/LiquidFloatingActionButton/LiquidFloatingActionButton.framework"; sourceTree = "<group>"; };
+		B6246E91EC0044C914175B77 /* Pods-H2H.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-H2H.release.xcconfig"; path = "Pods/Target Support Files/Pods-H2H/Pods-H2H.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +87,41 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A644228D1CF69B4000502539 /* libsqlite3.tbd in Frameworks */,
+				A644228C1CF69AC100502539 /* SystemConfiguration.framework in Frameworks */,
+				A644228A1CF69AB400502539 /* Security.framework in Frameworks */,
+				A64422881CF69AAB00502539 /* QuartzCore.framework in Frameworks */,
+				A64422861CF69AA400502539 /* MobileCoreServices.framework in Frameworks */,
+				A64422841CF69A9900502539 /* libz.1.1.3.tbd in Frameworks */,
+				A64422911CF6A05400502539 /* Parse.framework in Frameworks */,
+				A64422811CF69A8F00502539 /* CoreGraphics.framework in Frameworks */,
+				A64422821CF69A8F00502539 /* CoreLocation.framework in Frameworks */,
+				A644227C1CF699FD00502539 /* CFNetwork.framework in Frameworks */,
+				A64422741CF6998400502539 /* AudioToolbox.framework in Frameworks */,
+				A64422951CF6A07900502539 /* Bolts.framework in Frameworks */,
+				A08B1E3B60E98D7F37E42D6B /* Pods_H2H.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		57C720914EBD88E8F0EA6400 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0599177B41D69CAFDA601B43 /* Pods-H2H.debug.xcconfig */,
+				B6246E91EC0044C914175B77 /* Pods-H2H.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		73DE42B21C3793DA00658C31 = {
 			isa = PBXGroup;
 			children = (
 				73DE42BD1C3793DA00658C31 /* H2H */,
 				73DE42BC1C3793DA00658C31 /* Products */,
+				A6784C5A1CF69323001DD981 /* Frameworks */,
+				57C720914EBD88E8F0EA6400 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,14 +136,59 @@
 		73DE42BD1C3793DA00658C31 /* H2H */ = {
 			isa = PBXGroup;
 			children = (
-				73DE42BE1C3793DA00658C31 /* AppDelegate.swift */,
+				A64422961CF6A15F00502539 /* AppDelegate.swift */,
 				73DE42C01C3793DA00658C31 /* ViewController.swift */,
 				73DE42C21C3793DA00658C31 /* Main.storyboard */,
+				A62A9EBB1CFB9C7400A231D3 /* PostViewController.swift */,
+				A62A9EB91CFB979900A231D3 /* ProfileViewController.swift */,
+				A6B680641CFB78F70042CC9D /* SignUpViewController.swift */,
+				A64422981CF6AD8200502539 /* LoginViewController.swift */,
 				73DE42C51C3793DA00658C31 /* Assets.xcassets */,
+				A6784C551CF68EFC001DD981 /* Images */,
 				73DE42C71C3793DA00658C31 /* LaunchScreen.storyboard */,
 				73DE42CA1C3793DA00658C31 /* Info.plist */,
+				A648964B1CFE3FE5007660E6 /* GoogleService-Info.plist */,
 			);
 			path = H2H;
+			sourceTree = "<group>";
+		};
+		A6784C551CF68EFC001DD981 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				A64896491CFE3069007660E6 /* facebook.png */,
+				A64896471CFE250D007660E6 /* BeautySupply.png */,
+				A62A9EBD1CFBA43F00A231D3 /* placeholder.png */,
+				A62A9EB71CFB952000A231D3 /* settings.png */,
+				A62A9EB11CFB91DF00A231D3 /* post.png */,
+				73DE42D01C379FF600658C31 /* H2H.png */,
+				A6784C511CF68ED7001DD981 /* H2HBG.png */,
+				A6784C521CF68ED7001DD981 /* hairway.jpeg */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		A6784C5A1CF69323001DD981 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A6B680661CFB85530042CC9D /* LiquidFloatingActionButton.framework */,
+				A64422941CF6A07900502539 /* Bolts.framework */,
+				A644228E1CF6A05400502539 /* Parse.framework */,
+				A644228B1CF69AC100502539 /* SystemConfiguration.framework */,
+				A64422891CF69AB400502539 /* Security.framework */,
+				A64422871CF69AAB00502539 /* QuartzCore.framework */,
+				A64422851CF69AA400502539 /* MobileCoreServices.framework */,
+				A64422831CF69A9900502539 /* libz.1.1.3.tbd */,
+				A644227F1CF69A8F00502539 /* CoreGraphics.framework */,
+				A64422801CF69A8F00502539 /* CoreLocation.framework */,
+				A64422791CF699FD00502539 /* CFNetwork.framework */,
+				A644227A1CF699FD00502539 /* libnetwork.tbd */,
+				A644227B1CF699FD00502539 /* NetworkExtension.framework */,
+				A64422751CF699BB00502539 /* libsqlite3.0.tbd */,
+				A64422761CF699BB00502539 /* libsqlite3.tbd */,
+				A64422731CF6998400502539 /* AudioToolbox.framework */,
+				9A16FC588239E5E051E64F97 /* Pods_H2H.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,9 +198,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 73DE42CD1C3793DA00658C31 /* Build configuration list for PBXNativeTarget "H2H" */;
 			buildPhases = (
+				691CC41733FB839A7AD8856B /* 📦 Check Pods Manifest.lock */,
 				73DE42B71C3793DA00658C31 /* Sources */,
 				73DE42B81C3793DA00658C31 /* Frameworks */,
 				73DE42B91C3793DA00658C31 /* Resources */,
+				906B982C45149A777EF0C44A /* 📦 Embed Pods Frameworks */,
+				86C05F65662B11C74807B44E /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -96,6 +226,15 @@
 				TargetAttributes = {
 					73DE42BA1C3793DA00658C31 = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = R4Y4XTRC36;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -122,7 +261,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A62A9EB81CFB952000A231D3 /* settings.png in Resources */,
+				73DE42D11C379FF600658C31 /* H2H.png in Resources */,
+				A64896481CFE250D007660E6 /* BeautySupply.png in Resources */,
+				A648964A1CFE3069007660E6 /* facebook.png in Resources */,
+				A62A9EB31CFB91DF00A231D3 /* post.png in Resources */,
+				A648964C1CFE3FE5007660E6 /* GoogleService-Info.plist in Resources */,
+				A6784C531CF68ED7001DD981 /* H2HBG.png in Resources */,
+				A62A9EBE1CFBA43F00A231D3 /* placeholder.png in Resources */,
 				73DE42C91C3793DA00658C31 /* LaunchScreen.storyboard in Resources */,
+				A6784C541CF68ED7001DD981 /* hairway.jpeg in Resources */,
 				73DE42C61C3793DA00658C31 /* Assets.xcassets in Resources */,
 				73DE42C41C3793DA00658C31 /* Main.storyboard in Resources */,
 			);
@@ -130,13 +278,65 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		691CC41733FB839A7AD8856B /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		86C05F65662B11C74807B44E /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-H2H/Pods-H2H-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		906B982C45149A777EF0C44A /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-H2H/Pods-H2H-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		73DE42B71C3793DA00658C31 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A62A9EBC1CFB9C7400A231D3 /* PostViewController.swift in Sources */,
+				A64422991CF6AD8200502539 /* LoginViewController.swift in Sources */,
+				A64422971CF6A15F00502539 /* AppDelegate.swift in Sources */,
+				A62A9EBA1CFB979900A231D3 /* ProfileViewController.swift in Sources */,
+				A6B680651CFB78F70042CC9D /* SignUpViewController.swift in Sources */,
 				73DE42C11C3793DA00658C31 /* ViewController.swift in Sources */,
-				73DE42BF1C3793DA00658C31 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -179,7 +379,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: hoyoung Jung (9KY7GJ2T68)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: hoyoung Jung (9KY7GJ2T68)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -201,6 +402,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "e94f2809-7258-40f9-b782-60ecfb238e7e";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -223,7 +425,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -238,6 +441,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PROVISIONING_PROFILE = "e94f2809-7258-40f9-b782-60ecfb238e7e";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -245,23 +449,43 @@
 		};
 		73DE42CE1C3793DA00658C31 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0599177B41D69CAFDA601B43 /* Pods-H2H.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer: hoyoung Jung (9KY7GJ2T68)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: hoyoung Jung (9KY7GJ2T68)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/LiquidFloatingActionButton",
+				);
 				INFOPLIST_FILE = H2H/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.JungBusiness.H2H;
+				PRODUCT_BUNDLE_IDENTIFIER = com.JungBusiness.Hairway2Heaven;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "e94f2809-7258-40f9-b782-60ecfb238e7e";
 			};
 			name = Debug;
 		};
 		73DE42CF1C3793DA00658C31 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B6246E91EC0044C914175B77 /* Pods-H2H.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/LiquidFloatingActionButton",
+				);
 				INFOPLIST_FILE = H2H/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.JungBusiness.H2H;
+				PRODUCT_BUNDLE_IDENTIFIER = com.JungBusiness.Hairway2Heaven;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "e94f2809-7258-40f9-b782-60ecfb238e7e";
 			};
 			name = Release;
 		};
@@ -284,6 +508,7 @@
 				73DE42CF1C3793DA00658C31 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
