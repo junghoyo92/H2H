@@ -4,16 +4,6 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>LiquidFloatingActionButton-LiquidFloatingActionButton.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>LiquidFloatingActionButton.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Pods-H2H.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -22,17 +12,7 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>2E4A37C88D68A62EA5C1BC7A2A4D19AE</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>ECB4143196184B0E0EA02182DB2B9CCA</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>ED27B648BDF642CF39885E5A3CD61259</key>
+		<key>B5A240C38EFDA5C9AC09ED73C01AA144</key>
 		<dict>
 			<key>primary</key>
 			<true/>

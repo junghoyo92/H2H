@@ -14,7 +14,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
 
-    
     @IBOutlet var username: UITextField!
     @IBOutlet var password: UITextField!
     

@@ -5,6 +5,9 @@
       location = "group:H2H.xcodeproj">
    </FileRef>
    <FileRef
+      location = "group:/Users/Hoy/Desktop/App Development Lessons/H2H/H2H.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:Pods/Pods.xcodeproj">
    </FileRef>
 </Workspace>

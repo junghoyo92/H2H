@@ -1,3 +1,4 @@
+
 //
 //  AppDelegate.swift
 //  H2H
@@ -8,8 +9,7 @@
 
 import UIKit
 import Parse
-import Firebase
-import Batch
+import CloudKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,10 +20,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         // Enable storing and querying data from Local Datastore.
         // Remove this line if you don't want to use Local Datastore features or want to use cachePolicy.
+        
+        /*
         FIRApp.configure()
         Batch.startWithAPIKey("574E0B8F190F74162A5911529CBCF4") // Dev
         // Batch.startWithAPIKey("574E0B8F190F74162A5911529CBCF4") // live
         BatchPush.registerForRemoteNotifications()
+ */
+        
         Parse.enableLocalDatastore()
         
         let parseConfiguration = ParseClientConfiguration(block: { (ParseMutableClientConfiguration) -> Void in
@@ -58,8 +62,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let notificationTypes: UIUserNotificationType = [UIUserNotificationType.Alert, UIUserNotificationType.Badge, UIUserNotificationType.Sound]
         let pushNotificationSettings = UIUserNotificationSettings(forTypes: notificationTypes, categories: nil)
         
-        application.registerUserNotificationSettings(pushNotificationSettings)
-        application.registerForRemoteNotifications()
+        UIApplication.sharedApplication().registerUserNotificationSettings(pushNotificationSettings)
+        UIApplication.sharedApplication().registerForRemoteNotifications()
 
         
         return true
@@ -86,21 +90,42 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject], fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
+        
+        let cloudKitNotification = CKNotification(fromRemoteNotificationDictionary: userInfo as! [String:NSObject])
+        
+        completionHandler(.NewData)
+        
+        if cloudKitNotification.notificationType == CKNotificationType.Query {
+            dispatch_async(dispatch_get_main_queue(), {
+                NSNotificationCenter.defaultCenter().postNotificationName("performReload", object: nil)
+            })
+        }
+        
         PFPush.handlePush(userInfo)
         if application.applicationState == UIApplicationState.Inactive {
             PFAnalytics.trackAppOpenedWithRemoteNotificationPayload(userInfo)
         }
         
-        BatchPush.dismissNotifications()
     }
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
-        PFPush.handlePush(userInfo)
-        if application.applicationState == UIApplicationState.Inactive {
-            PFAnalytics.trackAppOpenedWithRemoteNotificationPayload(userInfo)
-        }
+        let cloudKitNotification = CKNotification(fromRemoteNotificationDictionary: userInfo as! [String:NSObject])
         
-        BatchPush.dismissNotifications()
+        if cloudKitNotification.notificationType == CKNotificationType.Query {
+            dispatch_async(dispatch_get_main_queue(), {
+                NSNotificationCenter.defaultCenter().postNotificationName("performReload", object: nil)
+            })
+        }
+    }
+    
+    func resetBadge() {
+        let badgeReset = CKModifyBadgeOperation(badgeValue: 0)
+        badgeReset.modifyBadgeCompletionBlock = { (error) -> Void in
+            if error == nil {
+                UIApplication.sharedApplication().applicationIconBadgeNumber = 0
+            }
+        }
+        CKContainer.defaultContainer().addOperation(badgeReset)
     }
 
     func applicationWillResignActive(application: UIApplication) {
@@ -111,14 +136,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        resetBadge()
     }
 
     func applicationWillEnterForeground(application: UIApplication) {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+        dispatch_async(dispatch_get_main_queue(), {
+            NSNotificationCenter.defaultCenter().postNotificationName("performReload", object: nil)
+        })
     }
 
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        resetBadge()
     }
 
     func applicationWillTerminate(application: UIApplication) {

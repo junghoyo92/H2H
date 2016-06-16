@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import CloudKit
 
 class SignUpViewController: UIViewController, UITextFieldDelegate {
 
@@ -22,9 +23,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
         
         alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action) -> Void in
-            
-            //self.dismissViewControllerAnimated(true, completion: nil)
-            
+            self.dismissViewControllerAnimated(true, completion: nil)
         }))
         self.presentViewController(alert, animated: true, completion: nil)
         
@@ -71,10 +70,9 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             user.username = usernameTextField.text
             user.password = passwordTextField.text
             
+            
+            
             user.signUpInBackgroundWithBlock({ (success, error) -> Void in
-                
-                self.activityIndicator.stopAnimating()
-                UIApplication.sharedApplication().endIgnoringInteractionEvents()
                 
                 if error == nil {
                     // successfull signup -> what to do after signup is complete
@@ -84,22 +82,31 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                         UIApplication.sharedApplication().endIgnoringInteractionEvents()
                         
                         if user != nil {
-                            print("Logged In!")
                             self.navigationController?.popToRootViewControllerAnimated(true)
+                            let newUser = CKRecord(recordType: "Users")
+                            newUser["username"] = self.usernameTextField.text
+                            if PFUser.currentUser()?.username != nil {
+                                newUser["username"] = (PFUser.currentUser()?.username)! as String
+                            } else {
+                                newUser["username"] = "Anonymous"
+                            }
+
                             
                         } else {
                             if let errorString = error!.userInfo["error"] as? String {
                                 errorMessage = errorString
                             }
+                            self.activityIndicator.stopAnimating()
+                            UIApplication.sharedApplication().endIgnoringInteractionEvents()
                             self.displayAlert("Failed Log In", message: errorMessage)
                         }
                     })
                 } else {
-                    
                     if let errorString = error!.userInfo["error"] as? String {
                         errorMessage = errorString
                     }
-        
+                    self.activityIndicator.stopAnimating()
+                    UIApplication.sharedApplication().endIgnoringInteractionEvents()
                     self.displayAlert("Failed SignUp", message: errorMessage)
                 }
             })

@@ -8,42 +8,57 @@
 
 import UIKit
 import Parse
-import LiquidFloatingActionButton
+import CloudKit
+
 
 class ViewController: UIViewController, UITextViewDelegate {
 
     var messages = [String]()
-    var imageFiles = [PFFile]()
+    var arrPosts: Array<CKRecord> = []
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
+    let container = CKContainer.defaultContainer()
+    var publicDatabase: CKDatabase?
+    var currentRecord: CKRecord?
+    var photoURL: NSURL?
     
     @IBOutlet var special: UITextView!
     @IBOutlet weak var specialPicture: UIImageView!
+    @IBOutlet weak var storeInfoText: UITextView!
     
-    // Data source for floating button
-    var cells = [LiquidFloatingCell]()
-    var floatingActionButton: LiquidFloatingActionButton!
+    @IBOutlet weak var leftBarButtonOutlet: UIBarButtonItem!
+    
+    @IBAction func leftBarButtonAction(sender: AnyObject) {
+        self.performSegueWithIdentifier("PostViewController", sender: self)
+    }
     
     @IBOutlet weak var rightButton: UIBarButtonItem!
     @IBAction func rightBarAction(sender: AnyObject) {
-        if PFUser.currentUser()?.username != nil {
+        if PFUser.currentUser()?.username != nil && rightButton.title == "Log In" {
             rightButton.title = "Log Out"
-            print("If Loop \(PFUser.currentUser()?.username)")
-        } else {
+        } else if PFUser.currentUser()?.username != nil && rightButton.title == "Log Out" {
+            activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 50, 50))
+            activityIndicator.center = self.view.center
+            activityIndicator.hidesWhenStopped = true
+            activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
+            view.addSubview(activityIndicator)
+            
+            activityIndicator.startAnimating()
+            UIApplication.sharedApplication().beginIgnoringInteractionEvents()
+            
+            PFUser.logOut()
+            leftBarButtonOutlet.enabled = false
+            self.leftBarButtonOutlet.tintColor = UIColor.clearColor()
             rightButton.title = "Log In"
-            print("Else Loop \(PFUser.currentUser()?.username)")
-        }
-        
-        if PFUser.currentUser()?.username == nil {
+            
+            activityIndicator.stopAnimating()
+            UIApplication.sharedApplication().endIgnoringInteractionEvents()
+        } else if PFUser.currentUser()?.username == nil && rightButton.title == "Log In" {
             self.performSegueWithIdentifier("toLogin", sender: self)
         } else {
-            print(PFUser.currentUser())
-            PFUser.logOut()
+            rightButton.title = "Log In"
+            leftBarButtonOutlet.enabled = false
+            self.leftBarButtonOutlet.tintColor = UIColor.clearColor()
         }
-    }
-    
-    @IBAction func refreshAction(sender: AnyObject) {
-        dataSearchPull()
-        print("Refreshed")
     }
     
     @IBAction func facebook(sender: AnyObject) {
@@ -75,37 +90,40 @@ class ViewController: UIViewController, UITextViewDelegate {
         
         if PFUser.currentUser()?.username != nil {
             rightButton.title = "Log Out"
-            print("If Loop \(PFUser.currentUser()?.username)")
         } else {
             rightButton.title = "Log In"
-            print("Else Loop \(PFUser.currentUser()?.username)")
         }
-        
-        createFloatingButtons() // password = Fabiana&Doobie
-        if PFUser.currentUser()?.username == "WonJinJung" {
-            floatingActionButton.hidden = false
-        } else {
-            print(PFUser.currentUser())
-            floatingActionButton.hidden = true
-        }
-        
         dataSearchPull()
+        storeInfoText.tintColor = UIColor.whiteColor()
+        storeInfoText.linkTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor(), NSUnderlineStyleAttributeName : NSUnderlineStyle.StyleSingle.rawValue]
+        
+        
+        if PFUser.currentUser()?.username == "WonJinJung16" || PFUser.currentUser()?.username == "H2HDemoProfile" {
+            self.leftBarButtonOutlet.enabled = true
+            self.leftBarButtonOutlet.tintColor = UIColor.whiteColor()
+        } else {
+            self.leftBarButtonOutlet.enabled = false
+            self.leftBarButtonOutlet.tintColor = UIColor.clearColor()
+        }
+        publicDatabase = container.publicCloudDatabase
+        setupCloudKitSubscription()
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.dataSearchPull), name: "performReload", object: nil)
     }
     
     override func viewDidAppear(animated: Bool) {
+        dataSearchPull()
         if PFUser.currentUser()?.username != nil {
             rightButton.title = "Log Out"
-            print("If Loop \(PFUser.currentUser()?.username)")
         } else {
             rightButton.title = "Log In"
-            print("Else Loop \(PFUser.currentUser()?.username)")
         }
-        if PFUser.currentUser()?.username == "WonJinJung" {
-            floatingActionButton.hidden = false
-            dataSearchPull()
+        
+        if PFUser.currentUser()?.username == "WonJinJung16" || PFUser.currentUser()?.username == "H2HDemoProfile" {
+            self.leftBarButtonOutlet.enabled = true
+            self.leftBarButtonOutlet.tintColor = UIColor.whiteColor()
         } else {
-            print(PFUser.currentUser())
-            floatingActionButton.hidden = true
+            self.leftBarButtonOutlet.enabled = false
+            self.leftBarButtonOutlet.tintColor = UIColor.clearColor()
         }
     }
 
@@ -114,98 +132,73 @@ class ViewController: UIViewController, UITextViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    func dataSearchPull() {
-        activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 50, 50))
-        activityIndicator.center = self.view.center
-        activityIndicator.hidesWhenStopped = true
-        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
-        view.addSubview(activityIndicator)
+    func displayAlert(title: String, message: String) {
         
-        activityIndicator.startAnimating()
-        UIApplication.sharedApplication().beginIgnoringInteractionEvents()
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action) -> Void in
+            //self.dismissViewControllerAnimated(true, completion: nil)
+        }))
+        self.presentViewController(alert, animated: true, completion: nil)
         
-        let query = PFQuery(className: "Post")
-        query.findObjectsInBackgroundWithBlock({ (objects, error) in
-            self.messages.removeAll(keepCapacity: true)
-            self.imageFiles.removeAll(keepCapacity: true)
-            if let objects = objects {
-                for object in objects {
-                    self.special.text = object["message"] as! String
-                    self.special.textColor = UIColor.whiteColor()
-                    self.special.font = UIFont(name: "Avenir Next", size: 17)
-                    self.special.textAlignment = .Center
-                    let imagefile = object["imageFile"] as! PFFile
-                    
-                    imagefile.getDataInBackgroundWithBlock({ (data, error) in
-                        if let downloadedImage = UIImage(data: data!) {
-                            self.specialPicture.image = downloadedImage
-                        }
-                    })
+    }
+    
+    func setupCloudKitSubscription() {
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        
+        if userDefaults.boolForKey("subscribed") == false {
+            let predicate = NSPredicate(format: "TRUEPREDICATE", argumentArray: nil)
+            let subscription = CKSubscription(recordType: "Post", predicate: predicate, options: CKSubscriptionOptions.FiresOnRecordCreation)
+            let notificationInfo = CKNotificationInfo()
+            
+            notificationInfo.alertLocalizationKey = "There's a New Deal from Hairway 2 Heaven"
+            notificationInfo.shouldBadge = true
+            
+            subscription.notificationInfo = notificationInfo
+            
+            let publicData = CKContainer.defaultContainer().publicCloudDatabase
+            publicData.saveSubscription(subscription) { (subscription:CKSubscription?, error:NSError?) in
+                if error != nil {
+                    print("Occurs in SetupCloudKitSubscription: \(error?.localizedDescription)")
+                } else {
+                    userDefaults.setBool(true, forKey: "subscribed")
+                    userDefaults.synchronize()
                 }
             }
-        })
-        activityIndicator.stopAnimating()
-        UIApplication.sharedApplication().endIgnoringInteractionEvents()
-        
+        }
+    }
+    
+    func dataSearchPull() {
+        let query = CKQuery(recordType: "Post", predicate: NSPredicate(format: "TRUEPREDICATE", argumentArray: nil))
+        query.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
+        publicDatabase?.performQuery(query, inZoneWithID: nil) { (results:[CKRecord]?, error:NSError?) in
+            if results != nil {
+                if results!.count > 0 {
+                    var post = results![0]
+                    self.currentRecord = post
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.special.text = post.objectForKey("content") as! String
+                        self.special.textColor = UIColor.whiteColor()
+                        self.special.font = UIFont(name: "Avenir Next Medium", size: 14)
+                        self.special.textAlignment = .Center
+
+                        if post.objectForKey("image") != nil {
+                            let photo = post.objectForKey("image") as! CKAsset
+                            let image = UIImage(contentsOfFile: photo.fileURL.path!)
+                        
+                            self.specialPicture.image = image
+                        } else {
+                            self.specialPicture.image = UIImage(named: "placeholder.png")
+                        }
+                    })
+                } else {
+                    self.special.text = "There are currently no Posts available"
+                    self.specialPicture.image = UIImage(named: "placeholder.png")
+                }
+            } else {
+                print("Check On ViewController DataSearch Pull:\(error)")
+            }
+        }
         return
     }
 
-    // MARK: - Create floating Buttons
-    
-    private func createFloatingButtons() {
-        //cells.append(createButtonCell("settings.png"))
-        cells.append(createButtonCell("post.png"))
-        
-        let floatingFrame = CGRect(x: self.view.frame.width - 52 - 16, y: self.view.frame.height - 52 - 16, width: 56, height: 56)
-        let floatingButton1 = createButton(floatingFrame, style: .Left)
-        
-        self.view.addSubview(floatingButton1)
-        self.floatingActionButton = floatingButton1
-    }
-    
-    private func createButtonCell(iconName: String) -> LiquidFloatingCell {
-        return LiquidFloatingCell(icon: UIImage(named: iconName)!)
-    }
-    
-    private func createButton(frame: CGRect, style: LiquidFloatingActionButtonAnimateStyle) -> LiquidFloatingActionButton
-    {
-        let floatingActionButton1 = LiquidFloatingActionButton(frame: frame)
-        
-        floatingActionButton1.animateStyle = style
-        floatingActionButton1.color = UIColor.init(red: 151/256.0, green: 208/256.0, blue: 195/256.0, alpha: 1.0)
-        floatingActionButton1.tintColor = UIColor.whiteColor()
-        floatingActionButton1.alpha = 1.0
-        floatingActionButton1.dataSource = self
-        floatingActionButton1.delegate = self
-        
-        return floatingActionButton1
-    }
-    
 }
-
-extension ViewController: LiquidFloatingActionButtonDataSource
-{
-    func numberOfCells(liquidFloatingActionButton: LiquidFloatingActionButton) -> Int {
-        return cells.count
-    }
-    
-    func cellForIndex(index: Int) -> LiquidFloatingCell {
-        return cells[index]
-    }
-}
-
-extension ViewController: LiquidFloatingActionButtonDelegate
-{
-    func liquidFloatingActionButton(liquidFloatingActionButton: LiquidFloatingActionButton, didSelectItemAtIndex index: Int) {
-        print("button number \(index) did click")
-        if index == 0 {
-            self.performSegueWithIdentifier("PostViewController", sender: self)
-        }
-        self.floatingActionButton.close()
-    }
-    
-    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
-        return .None
-    }
-}
-
